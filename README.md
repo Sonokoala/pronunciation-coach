@@ -66,6 +66,18 @@ AZURE_SPEECH_REGION=australiaeast
 `decks\sample.txt` は動作確認用の例です。自分のプレゼンを `decks` に入れて使います（`decks` の中身は Git に入りません）。
 テキストの原稿は `# 見出し` の行で区切ると、見出しごとにまとまります。
 
+## Study Notes JP とつなぐ
+
+Study Notes JP が作る英語のプレゼンを、このアプリの `decks` フォルダに保存するようにすると、授業を録画するだけで発音練習まで進めます。
+
+1. Study Notes JP の「**設定**」タブで、「**プレゼンの保存先**」にこのアプリの `decks` フォルダ（例 `C:\pronunciation-coach\decks`）を指定して保存します。
+   学習ノートはこれまで通り「保存先」に、英語のプレゼンだけが `decks\<科目>\` に保存されます。
+2. 授業の録画を Study Notes JP で処理します（「作成」タブ、または監視フォルダ）。
+3. このアプリを `start.bat` で起動すると、画面上のメニューに `<科目>/<日付> <タイトル> - プレゼン_EN` が出るので、選んで練習します。
+
+すでに作ったプレゼンは、`プレゼン_EN.pptx` を `decks` フォルダにコピーするか、`start_any.bat` にドラッグ＆ドロップしても練習できます。
+英語版の [Study Notes](https://github.com/Sonokoala/study-notes-app) でも同じ設定（Settings の「Presentations folder」）で使えます。
+
 ## 3. 使い方
 
 1. 左の一覧から文を選びます（太字は赤で表示されるので、そこを強く読みます）。
