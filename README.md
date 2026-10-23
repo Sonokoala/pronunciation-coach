@@ -68,15 +68,16 @@ AZURE_SPEECH_REGION=australiaeast
 
 ## Study Notes JP とつなぐ
 
-Study Notes JP が作る英語のプレゼンを、このアプリの `decks` フォルダに保存するようにすると、授業を録画するだけで発音練習まで進めます。
+Study Notes JP の設定で連携をオンにすると、授業を録画して処理するだけで、英語のプレゼンがこのアプリに入り、発音練習の画面が開きます。
 
-1. Study Notes JP の「**設定**」タブで、「**プレゼンの保存先**」にこのアプリの `decks` フォルダ（例 `C:\pronunciation-coach\decks`）を指定して保存します。
-   学習ノートはこれまで通り「保存先」に、英語のプレゼンだけが `decks\<科目>\` に保存されます。
-2. 授業の録画を Study Notes JP で処理します（「作成」タブ、または監視フォルダ）。
-3. このアプリを `start.bat` で起動すると、画面上のメニューに `<科目>/<日付> <タイトル> - プレゼン_EN` が出るので、選んで練習します。
+1. Study Notes JP の「**設定**」タブの「**発音練習との連携**」で、「英語のプレゼンを発音練習アプリに入れる」にチェックを入れます。
+2. 「発音練習アプリのフォルダ」に、このアプリのフォルダ（`server.py` があるフォルダ）を選んで保存します。
+3. 授業の録画を Study Notes JP で処理します（「作成」タブ、または監視フォルダ）。英語のプレゼンは `decks\<科目>\` に保存されます。
+4. 「プレゼンを作り終えたら、発音練習アプリを開く」にチェックがあれば、このアプリが起動します（起動済みならページが開きます）。画面上のメニューから `<科目>/<日付> <タイトル> - プレゼン_EN` を選んで練習します。
 
+連携はオプションです。ノートだけ使いたい人は、オフのままで大丈夫です。
 すでに作ったプレゼンは、`プレゼン_EN.pptx` を `decks` フォルダにコピーするか、`start_any.bat` にドラッグ＆ドロップしても練習できます。
-英語版の [Study Notes](https://github.com/Sonokoala/study-notes-app) でも同じ設定（Settings の「Presentations folder」）で使えます。
+英語版の [Study Notes](https://github.com/Sonokoala/study-notes-app) でも、Settings の「Pronunciation practice」で同じように使えます。
 
 ## 3. 使い方
 
