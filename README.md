@@ -23,6 +23,16 @@
 - 読み込めるもの：PowerPoint（スライドの文、またはノート欄の原稿）、テキストの原稿や文字起こし（.txt）、それらが入ったフォルダ
 - 練習の記録は `notes\練習ログ.csv` に残ります
 
+## 料金について（必ずお読みください）
+
+このアプリの採点には **Microsoft Azure の Speech サービス（有料の API）** を使います。
+
+- 無料の価格レベル **F0** では、音声認識が毎月5時間まで無料です。それを超えて使う場合や、有料の価格レベル（S0）を選んだ場合は、使った分の料金がかかります。
+- 発音評価（Pronunciation Assessment）は、Azure の料金表では音声認識に追加される機能として扱われています。料金は変わることがあるので、使う前に [Azure の料金ページ](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) で確認してください。
+- **学生の方へ：** [Azure for Students](https://azure.microsoft.com/free/students/) を使うと、学校のメールアドレスで学生であることを確認すれば、クレジットカードなしで **100ドル分の無料クレジット**（12か月間）を受け取れます。学生である間は毎年更新できます。条件は変わることがあるので、申し込む前に公式ページで確認してください。
+
+お手本の読み上げにも Azure を使います。Azure を設定していないときは、ブラウザに入っている音声で読み上げます。
+
 ## 1. 準備（初回だけ・約10分）
 
 Python 3.11 以降が必要です（https://www.python.org/downloads/ 。インストール画面で **Add python.exe to PATH** にチェック）。追加のライブラリはいりません。
