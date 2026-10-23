@@ -392,6 +392,24 @@ def get_token():
         return value, region
 
 
+# ---------------------------------------------------------------- practice log
+
+def upgrade_log(log, fields):
+    """Rewrite a log made by an older version so its header has every column (new ones are left empty)."""
+    import csv
+    if not log.exists():
+        return
+    with open(log, encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+        header = rows[0].keys() if rows else []
+    if not rows or list(header) == fields:
+        return
+    with open(log, "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+
+
 # ---------------------------------------------------------------- HTTP
 
 class Handler(SimpleHTTPRequestHandler):
@@ -427,7 +445,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_json(500, {"error": str(e)})
 
     LOG_FIELDS = ["date", "time", "deck", "slide", "title", "sentence", "locale",
-                  "total", "accuracy", "fluency", "completeness", "prosody", "low_words"]
+                  "total", "accuracy", "fluency", "completeness", "prosody", "low_words", "low_sounds"]
 
     def append_log(self):
         """Append one recording's scores to notes/練習ログ.csv (UTF-8 with BOM so Excel reads Japanese)."""
@@ -439,6 +457,7 @@ class Handler(SimpleHTTPRequestHandler):
             notes = ROOT / "notes"
             notes.mkdir(exist_ok=True)
             log = notes / "練習ログ.csv"
+            upgrade_log(log, self.LOG_FIELDS)
             new = not log.exists()
             with _log_lock, open(log, "a", newline="", encoding="utf-8-sig" if new else "utf-8") as f:
                 w = csv.DictWriter(f, fieldnames=self.LOG_FIELDS, extrasaction="ignore")

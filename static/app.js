@@ -650,12 +650,17 @@ function logAttempt(item, result) {
   const low = result.words
     .filter((w) => errType(w) !== "Insertion" && w.PronunciationAssessment && (errType(w) === "Omission" || w.PronunciationAssessment.AccuracyScore < LOW))
     .map((w) => `${w.Word}(${errType(w) === "Omission" ? "読み飛ばし" : round(w.PronunciationAssessment.AccuracyScore)})`);
+  // weak sounds as "/ipa/(score)" or "/ipa/→/heard/(score)", read back by Study Notes to target its term tips
+  const sounds = result.words
+    .filter((w) => errType(w) !== "Insertion" && errType(w) !== "Omission")
+    .flatMap((w) => phonemesOf(w).filter((p) => p.score < LOW)
+      .map((p) => `${p.heard ? `/${p.ipa}/→/${p.heard}/` : `/${p.ipa}/`}(${round(p.score)})`));
   const r = (v) => (v == null || Number.isNaN(v) ? "" : round(v));
   const row = {
     deck: state.deck || state.data?.deck || "", slide: item.slide ?? "", title: item.title || "",
     sentence: item.custom ? current().text : item.text, locale: $("locale").value,
     total: r(sc.pron), accuracy: r(sc.accuracy), fluency: r(sc.fluency), completeness: r(sc.completeness), prosody: r(sc.prosody),
-    low_words: low.join(" "),
+    low_words: low.join(" "), low_sounds: sounds.join(" "),
   };
   fetch("/api/log", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(row) })
     .catch(() => setStatus("練習ログを保存できませんでした(採点結果はこの画面に出ています)。", true));
