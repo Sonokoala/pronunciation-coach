@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronunciation Coach</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@1.40.0/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">Aa</span>
+    <div><h1>Pronunciation Coach</h1><p id="deckName">読み込み中…</p></div>
+  </div>
+  <div class="controls">
+    <label>アクセント
+      <select id="locale">
+        <option value="en-US">American (en-US)</option>
+        <option value="en-AU">Australian (en-AU)</option>
+        <option value="en-GB">British (en-GB)</option>
+      </select>
+    </label>
+    <label>お手本の速さ
+      <select id="rate">
+        <option value="slow">ゆっくり</option>
+        <option value="normal" selected>普通</option>
+      </select>
+    </label>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<div class="layout">
+  <nav id="list" class="list" aria-label="練習する文"></nav>
+
+  <main>
+    <section class="card practice">
+      <div class="meta"><span id="slideTag"></span><span id="pos"></span></div>
+      <div id="sentence" class="sentence"></div>
+      <textarea id="custom" class="custom" rows="3" placeholder="練習したい英文を入力してください" hidden></textarea>
+      <div class="buttons">
+        <button id="prev" class="ghost" title="前の文 (←)" aria-label="前の文">←</button>
+        <button id="model" class="secondary">▶ お手本</button>
+        <button id="rec" class="primary"><span id="recLabel">● 録音</span> <kbd>Space</kbd></button>
+        <button id="mine" class="secondary" disabled>▶ 自分の声</button>
+        <button id="next" class="ghost" title="次の文 (→)" aria-label="次の文">→</button>
+      </div>
+      <div class="statusRow">
+        <div class="meter" aria-hidden="true"><i id="level"></i></div>
+        <div id="status" class="status">お手本を聞いてから、録音ボタン(または Space)で読み上げてください。</div>
+      </div>
+    </section>
+
+    <section id="result" class="card result" hidden>
+      <div class="scores">
+        <div class="ring">
+          <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle id="ringArc" class="arc" cx="60" cy="60" r="52"/></svg>
+          <div class="ringText"><b id="pron">0</b><span>総合</span></div>
+        </div>
+        <div id="bars" class="bars"></div>
+      </div>
+
+      <div id="points" class="points"></div>
+
+      <h3>単語ごとの評価 <small>単語をクリックすると、音ごとの詳細が見られます</small></h3>
+      <div id="words" class="words"></div>
+      <div class="legend">
+        <span><i class="sw good"></i>80以上</span>
+        <span><i class="sw fair"></i>60–79</span>
+        <span><i class="sw poor"></i>60未満</span>
+        <span><i class="sw omit"></i>抜け</span>
+        <span><i class="sw insert"></i>余分</span>
+        <span><b class="flag">⏸</b>区切り・抑揚の指摘</span>
+      </div>
+      <div id="detail" class="detail" hidden></div>
+      <p id="heard" class="heard"></p>
+    </section>
+
+    <section class="card">
+      <div class="weakHead">
+        <h3>苦手な音 TOP 10 <small>これまでの全録音から集計</small></h3>
+        <span><button id="saveNote" class="ghost small">苦手な単語をノートに保存</button> <button id="reset" class="ghost small">記録をリセット</button></span>
+      </div>
+      <div id="weak" class="weak"></div>
+    </section>
+  </main>
+</div>
+
+<script src="tips.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

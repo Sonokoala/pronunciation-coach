@@ -1,0 +1,11 @@
+# Azure key
+.env
+
+# Your own practice material and logs
+decks/*
+!decks/sample.txt
+notes/
+
+__pycache__/
+*.pyc
+desktop.ini

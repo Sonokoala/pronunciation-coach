@@ -1,0 +1,9 @@
+# Introducing a project
+I built a desktop app that turns lecture recordings into study notes.
+It lets me focus on listening during class instead of writing.
+After class, I practise presenting the content out loud.
+
+# Explaining a process
+First, the recording is transcribed on the computer.
+Next, an AI model writes the notes and a short presentation.
+Finally, I read the script aloud and check my pronunciation.
